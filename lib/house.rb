@@ -26,7 +26,7 @@ class House
     {
       length: "This house has a #{length} meters length",
       width: "This house has a #{width} meters width",
-      floors: "This house has #{width} floors",
+      floors: "This house has #{floors} floors",
       created_at: "This house was created #{created_at.strftime('%A, the %d of %B, %Y')}",
     }
   end
