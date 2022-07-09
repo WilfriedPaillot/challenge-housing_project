@@ -49,7 +49,7 @@ class HousingProject
   end
 
   def project_invest_return_price
-    project_costs * interest_percentage
+    (project_costs * interest_percentage).round(2)
   end
 
   def interest_percentage
@@ -60,5 +60,6 @@ class HousingProject
     raise ArgumentError 'Name should be a String' unless name.is_a? String
     raise ArgumentError 'Interests should be an Integer' unless interests.is_a? Integer
     raise ArgumentError 'Delivery Time should be a Date' unless delivery_time.is_a? Date
+    raise ArgumentError 'Delivery Time should be in the future' unless delivery_time > Date.today
   end
 end
