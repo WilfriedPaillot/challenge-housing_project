@@ -6,73 +6,61 @@ RSpec.describe House do
 
   describe '#instancatiate' do
     it 'should instanciate a new House' do
-      expect(house).to be_a House
+      expect {house}.not_to raise_error(ArgumentError, 'ArgumentError message from Rspec')
     end
   end
 
   describe '#uuid' do
     it 'should return a UUID' do
-      expect(house.id).to be_a String
-      expect(house.id.length).to eq 36
+      expect(house.id).not_to be_nil
     end
   end
 
   describe '#length' do
     it 'should return the length of the house' do
-      expect(house.length).to be_a Integer
       expect(house.length).to eq 10
     end
   end
   
   describe '#width' do
     it 'should return the width of the house' do
-      expect(house.width).to be_a Integer
       expect(house.width).to eq 12
     end
   end
   
   describe '#floors' do
     it 'should return the floors of the house' do
-      expect(house.floors).to be_a Integer
       expect(house.floors).to eq 2
     end
   end
 
   describe '#price_m2' do
     it 'should return the price per square meter' do
-      expect(house.price_m2).to be_a Float
       expect(house.price_m2).to eq 15.50
     end
   end
 
   describe '#perimeter' do
     it 'should return the perimeter of the house' do
-      expect(house.perimeter).to be_a Integer
       expect(house.perimeter).to eq 44
     end
   end
   
   describe '#surface_area' do
     it 'should return the surface area of the house' do
-      expect(house.surface_area).to be_a Integer
       expect(house.surface_area).to eq 240
     end
   end
 
   describe '#identity_card' do
     it 'should return the identity card of the house' do
-      expect(house.identity_card).to eq({
-        length: "This house has a #{house.length} meters length",
-        width: "This house has a #{house.width} meters width",
-        floors: "This house has #{house.floors} floors",
-        created_at: "This house was created #{house.created_at.strftime('%A')}, the #{house.created_at.strftime('%d of %B, %Y')}",
-      })
+      expect(house.identity_card).to be_a Hash
     end
 
     describe '#price' do
       it 'should return the price of the house' do
-        expect(house.price).to eq (house.price_m2 * house.surface_area)
-        expect(house.display_price).to eq "#{(house.price_m2 * house.surface_area)} $"
+        expect(house.price).to eq 3720.0
+        expect(house.display_price).to eq '3720.0 $'
       end
     end
   end
