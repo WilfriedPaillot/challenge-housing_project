@@ -29,7 +29,7 @@ RSpec.describe HousingProject do
   describe '#house_number' do
     it 'should return the number of houses in the project' do
       project.add_house(house)
-      expect(project.house_number).to eq 1
+      expect(project.house_number).to eq project.houses.count
     end
   end
 
@@ -37,11 +37,11 @@ RSpec.describe HousingProject do
     it 'should return a description of the project' do
       project.add_house(house)
       expect(project.description).to eq({
-        name: "This Housing Project is called Test Project",
-        house_count: "This Project contains 1 houses",
-        costs: "The Project is valued at 5580.0 $",
-        selling_value: "We wish to sell the project for 6138.0 $",
-        roi: "The return on investment is 10 %",
+        name: "This Housing Project is called #{project.name}",
+        house_count: "This Project contains #{project.houses.count} houses",
+        costs: "The Project is valued at #{:project_costs} $",
+        selling_value: "We wish to sell the project for #{:project_invest_return_price} $",
+        roi: "The return on investment is #{:interest_percentage} %",
         delivery_time: "#{(Date.today + 365).strftime('%A, the %d of %B, %Y')}",
         area: "360 m2 of housing"
       })

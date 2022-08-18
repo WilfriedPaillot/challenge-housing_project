@@ -19,18 +19,21 @@ RSpec.describe House do
 
   describe '#length' do
     it 'should return the length of the house' do
+      expect(house.length).to be_a Integer
       expect(house.length).to eq 10
     end
   end
-
+  
   describe '#width' do
     it 'should return the width of the house' do
+      expect(house.width).to be_a Integer
       expect(house.width).to eq 12
     end
   end
-
+  
   describe '#floors' do
     it 'should return the floors of the house' do
+      expect(house.floors).to be_a Integer
       expect(house.floors).to eq 2
     end
   end
@@ -48,9 +51,10 @@ RSpec.describe House do
       expect(house.perimeter).to eq 44
     end
   end
-
+  
   describe '#surface_area' do
     it 'should return the surface area of the house' do
+      expect(house.surface_area).to be_a Integer
       expect(house.surface_area).to eq 240
     end
   end
@@ -58,17 +62,17 @@ RSpec.describe House do
   describe '#identity_card' do
     it 'should return the identity card of the house' do
       expect(house.identity_card).to eq({
-        length: "This house has a 10 meters length",
-        width: "This house has a 12 meters width",
-        floors: "This house has 2 floors",
-        created_at: "This house was created Saturday, the 09 of July, 2022",
+        length: "This house has a #{house.length} meters length",
+        width: "This house has a #{house.width} meters width",
+        floors: "This house has #{house.floors} floors",
+        created_at: "This house was created #{house.created_at.strftime('%A')}, the #{house.created_at.strftime('%d of %B, %Y')}",
       })
     end
 
     describe '#price' do
       it 'should return the price of the house' do
-        expect(house.price).to eq 240 * 15.50
-        expect(house.display_price).to eq "#{240 * 15.50} $"
+        expect(house.price).to eq (house.price_m2 * house.surface_area)
+        expect(house.display_price).to eq "#{(house.price_m2 * house.surface_area)} $"
       end
     end
   end
